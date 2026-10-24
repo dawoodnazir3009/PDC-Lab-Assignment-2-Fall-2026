@@ -15,7 +15,7 @@ public class TradeEvent {
         this.price = price;
     }
 
-    void dispatch()
+    public void dispatch()
     {
         System.out.println("Generic Trade Event");
         System.out.println("Sender ID is : " + SenderID);
