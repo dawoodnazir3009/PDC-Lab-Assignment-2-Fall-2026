@@ -1,6 +1,7 @@
 package Q3;
 
-public class TelemetryThread extends Thread {
+public class TelemetryThread extends Thread 
+{
  
     @Override
     public void run()
@@ -18,10 +19,10 @@ public class TelemetryThread extends Thread {
             else 
                 cpu = String.format("%.2f", load);
             int cores = rt.availableProcessors();
-            System.out.println("[" + getName() + "] Health update " + i + "/5");
-            System.out.println(" | CPU cores: " + cores + " | CPU load avg: " + cpu);
+            System.out.print("[" + getName() + "] Health update " + i + "/5");
+            System.out.print(" | CPU cores: " + cores + " | CPU load avg: " + cpu);
             System.out.println(" | Memory: " + usedMb + "MB / " + maxMb + "MB");
-            
+
             try 
             {
                 Thread.sleep(800);
