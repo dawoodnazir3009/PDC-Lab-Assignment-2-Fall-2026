@@ -6,9 +6,9 @@ public class ReutersQuoteEvent extends TradeEvent {
 
     public ReutersQuoteEvent(String SenderID, long timestamp, double price, double bidprice, double askprice)
     {
+        super(SenderID, timestamp, price);
         this.bidprice = bidprice;
         this.askprice = askprice;
-        super(SenderID, timestamp, price);
     }
 
 
