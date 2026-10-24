@@ -66,14 +66,15 @@ public class PacketSymmetryAuditor
             }
         }
  
-        System.out.println(symmetric
-                ? "[RESULT] VERIFIED: packet exhibits bi-directional symmetry (palindrome signature)."
-                : "[RESULT] REJECTED: packet is NOT symmetric.");
+        System.out.println(symmetric ? "[RESULT] VERIFIED: packet exhibits bi-directional symmetry (palindrome signature)." : "[RESULT] REJECTED: packet is NOT symmetric.");
     }
  
-    public static void main(String[] args) {
-        if (args.length > 0) {
-            for (String payload : args) {
+    public static void main(String[] args) 
+    {
+        if (args.length > 0) 
+        {
+            for (String payload : args)
+            {
                 audit(payload);
             }
             return;
