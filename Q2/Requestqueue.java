@@ -1,6 +1,6 @@
 package Q2;
 
-public class RequestQueue 
+public class Requestqueue 
 {
     private final char[] data;
     private int front;   // index of the next element to dequeue
@@ -8,7 +8,7 @@ public class RequestQueue
     private int size;    // current number of elements
     private final int capacity;
  
-    public RequestQueue(int capacity) 
+    public Requestqueue(int capacity) 
     {
         this.capacity = capacity;
         this.data = new char[capacity];
@@ -18,6 +18,6 @@ public class RequestQueue
     }
 
 
-    
+
     
 }
