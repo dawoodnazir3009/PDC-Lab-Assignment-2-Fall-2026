@@ -17,7 +17,11 @@ public class TradeEvent {
 
     void dispatch()
     {
-        
+        System.out.println("Generic Trade Event");
+        System.out.println("Sender ID is : " + SenderID);
+        System.out.println("Timestamp is : " + timestamp);
+        System.out.println("Base Price is : " + price);
+
     }
     
 }
