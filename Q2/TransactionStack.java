@@ -14,4 +14,13 @@ public class TransactionStack
         this.data = new char[capacity];
         this.top = -1; //-1 as stack is currently empty
     }
+
+
+    public boolean isEmpty()
+    {
+        if (top == -1)
+        return true; //true as stack is empty
+        else
+            return false; // as stack is not empty
+    }
 }
