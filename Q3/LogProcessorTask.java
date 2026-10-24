@@ -12,7 +12,15 @@ public class LogProcessorTask implements Runnable
             System.out.println("[" + Thread.currentThread().getName() + "] "
                     + "Log analysis iteration " + i + "/5 - processed batch "
                     + (i * 250) + " log entries");
-            Thread.sleep(1000);
+        try {
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e) 
+            {
+                System.out.println("[" + Thread.currentThread().getName() + "] Thread was interrupted.");
+                Thread.currentThread().interrupt();
+                break; 
+            }
             
         }
         System.out.println("[" + Thread.currentThread().getName() + "] Log processing complete.\n");
