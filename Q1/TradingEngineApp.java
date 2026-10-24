@@ -1,7 +1,9 @@
 package Q1;
 
-public class TradingEngineApp {
-    public static void main(String[] args) {
+public class TradingEngineApp 
+{
+    public static void main(String[] args) 
+    {
         long now = System.currentTimeMillis();
  
         TradeEvent generic = new TradeEvent("SYS-CORE", now, 150.00);
@@ -10,8 +12,9 @@ public class TradingEngineApp {
  
         TradeEvent[] events = { generic, fixOrder, quote };
  
-        System.out.println("=== Trading Engine: Dispatching Events ===\n");
-        for (TradeEvent event : events) {
+        System.out.println("\t\t\tTrading Engine: Dispatching Event\n");
+        for (TradeEvent event : events) 
+        {
             event.dispatch();   // dynamic method dispatch at run time
             System.out.println();
         }
