@@ -49,7 +49,20 @@ public class CacheLocalityBenchmark
 
             }
         }
-        
+
+
+
+        System.out.println("--- Cache Locality Benchmark --- ");
+        System.out.print("Matrix: " + N + " x " + N + "doubles (");
+        System.out.println((N * N * 8L / (1024*1024)) + " MB) | Iterations: " + ITERATIONS);
+    
+        double warmsink = 0;
+        for (int w = 0; w < WARMUP; w++)
+        {
+
+            warmsink += traverseRowMajor();
+            warmsink += traverseColumnMajor();
+        }
     }
     
 }
