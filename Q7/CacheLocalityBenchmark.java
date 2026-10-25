@@ -78,6 +78,35 @@ public class CacheLocalityBenchmark
             ColSum = traverseColumnMajor();
             colms[it] = (System.nanoTime() - t0) / 1e6;
         }
+
+        System.out.println("\nIteration   Row-Major (ms)   Column-Major (ms)");
+        double rowTotal = 0, colTotal = 0;
+        for (int it = 0; it < ITERATIONS; it++) {
+            System.out.printf("%5d       %12.3f      %14.3f%n", it + 1, rowms[it], colms[it]);
+            rowTotal += rowms[it];
+            colTotal += colms[it];
+        }
+ 
+        double rowAvg = rowTotal / ITERATIONS;
+        double colAvg = colTotal / ITERATIONS;
+ 
+        System.out.println("\n--- Results ---");
+        System.out.printf("Row-Major average    : %.3f ms%n", rowAvg);
+        System.out.printf("Column-Major average : %.3f ms%n", colAvg);
+        System.out.printf("Speedup (Column / Row): %.2fx faster with Row-Major%n", colAvg / rowAvg);
+        System.out.println("Sums match: " + (RowSum == ColSum) + " (" + RowSum + ")");
+        if (warmsink < 0) 
+        {
+            System.out.println(warmsink);   // never true; keeps warm-up work from being discarded
+        }
+        System.out.println("\n--- Explanation ---");
+        System.out.println("A Java double[N][N] is an array of row arrays; each row is a contiguous");
+        System.out.println("block of " + (N * 8) + " bytes. A CPU cache line is 64 bytes = 8 doubles.");
+        System.out.println("Row-Major reads neighbouring doubles, so one cache-line fill serves 8");
+        System.out.println("accesses and the hardware prefetcher streams the next lines ahead of use.");
+        System.out.println("Column-Major jumps " + (N * 8) + " bytes between accesses, so every access");
+        System.out.println("touches a different cache line (and page), using 1 of 8 doubles loaded");
+        System.out.println("and causing many more cache and TLB misses and memory stalls.");
     }
-    
 }
+ 
