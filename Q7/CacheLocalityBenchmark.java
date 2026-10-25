@@ -63,6 +63,21 @@ public class CacheLocalityBenchmark
             warmsink += traverseRowMajor();
             warmsink += traverseColumnMajor();
         }
+
+        double[] rowms = new double[ITERATIONS];
+        double[] colms = new double[ITERATIONS];
+        double RowSum = 0, ColSum = 0;
+        
+        for (int it = 0; it < ITERATIONS; it++) 
+        {
+            long t0 = System.nanoTime();
+            RowSum = traverseRowMajor();
+        rowms[it] = (System.nanoTime() - t0) / 1e6;
+ 
+            t0 = System.nanoTime();
+            ColSum = traverseColumnMajor();
+            colms[it] = (System.nanoTime() - t0) / 1e6;
+        }
     }
     
 }
