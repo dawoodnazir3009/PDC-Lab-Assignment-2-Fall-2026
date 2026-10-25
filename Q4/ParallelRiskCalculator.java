@@ -15,23 +15,38 @@ public class ParallelRiskCalculator extends RecursiveTask<Double>
         this.assets = assets;
         this.start = start;
         this.end = end;
-
     }
-
-    @Override 
-    public Double compute()
+ 
+    @Override
+    protected Double compute() 
     {
-        double sum = 0.0;
+        int length = end - start;
+ 
+       
+        if (length <= THRESHOLD) 
+        {
+            double sum = 0.0;
 
-        return sum;
-
+            int i = start;
+            for (; i < end; i++) 
+            {
+                sum += assets[i];
+            }
+            return sum;
+        }
+ 
+        
+        int mid = start + length / 2;
+        ParallelRiskCalculator left = new ParallelRiskCalculator(assets, start, mid);
+        ParallelRiskCalculator right = new ParallelRiskCalculator(assets, mid, end);
+ 
+        left.fork();
+        right.fork();
+ 
+        double leftResult = left.join();
+        double rightResult = right.join();
+        
+        return leftResult + rightResult;
     }
-
-
-
-
-
-
 }
-
-
+ 
