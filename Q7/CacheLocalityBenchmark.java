@@ -8,5 +8,20 @@ public class CacheLocalityBenchmark
 
     private static final double[][] matrix = new double[N][N]; //2-D array
     
+
+    static double traverseRowMajor()
+    {
+
+        double sum = 0.0;
+        for ( int i = 0; i < N; i++)
+        {
+            for ( int j = 0; j < N; j++)
+            {
+                sum += matrix [i][j];
+
+            }
+        }
+        return sum;
+    }
     
 }
