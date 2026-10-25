@@ -2,6 +2,11 @@ package Q7;
 
 public class CacheLocalityBenchmark 
 {
+    private static final int N = 2000;
+    private static final int ITERATIONS = 10;
+    private static final int WARMUP = 2;
+
+    private static final double[][] matrix = new double[N][N]; //2-D array
     
     
 }
