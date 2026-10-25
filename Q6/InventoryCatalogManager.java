@@ -190,5 +190,26 @@ public class InventoryCatalogManager
         return elapsed;
     }
 
-    
+    public static void main(String[] args) 
+    {
+        InventoryCatalogManager manager = new InventoryCatalogManager();
+
+        System.out.println("--- Inventory Catalog Concurrency Benchmark ---");
+        System.out.println("Worker threads: " + THREADS + " | Total operations: " + TOTAL_OPERATIONS
+                + " | Products: " + PRODUCT_COUNT + " | Mix: " + (100 - UPDATE_PERCENT)
+                + "% lookups / " + UPDATE_PERCENT + "% updates");
+        System.out.println("Each result is averaged over " + MEASURED_ROUNDS + " rounds after "
+                + WARMUP_ROUNDS + " warm-up rounds.");
+
+        BenchmarkResult sync = manager.benchmarkSynchronizedMap();
+        BenchmarkResult conc = manager.benchmarkConcurrentMap();
+
+        System.out.println("\n--- Summary ---");
+        System.out.printf("%-38s %12s %22s%n", "Collection", "Time (ms)", "Throughput (ops/sec)");
+        System.out.printf("%-38s %12.3f %,22.0f%n", sync.name, sync.millis, sync.opsPerSecond);
+        System.out.printf("%-38s %12.3f %,22.0f%n", conc.name, conc.millis, conc.opsPerSecond);
+        System.out.printf("%nConcurrentHashMap throughput is %.2fx that of the synchronized map.%n",
+                conc.opsPerSecond / sync.opsPerSecond);
+        System.out.println("Inventory integrity check passed for all rounds.");
+    }
 }
