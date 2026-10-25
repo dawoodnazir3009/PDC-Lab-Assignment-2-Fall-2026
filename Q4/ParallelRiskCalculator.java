@@ -1,7 +1,6 @@
 package Q4;
 import java.util.concurrent.RecursiveTask;
  
-
 public class ParallelRiskCalculator extends RecursiveTask<Double> 
 {
     private static final int THRESHOLD = 1000;
@@ -45,7 +44,7 @@ public class ParallelRiskCalculator extends RecursiveTask<Double>
  
         double leftResult = left.join();
         double rightResult = right.join();
-        
+
         return leftResult + rightResult;
     }
 }
